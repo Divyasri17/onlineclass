@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000fe6;
+            --primary-hover: #000bc1;
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-main: #020617; /* Thicker/darker text */
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+            --icon-color: #64748b;
+            --input-bg: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Space Grotesk', sans-serif;
+        }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px 20px;
+}
+        /* Abstract Premium Background Elements for T-Shirt Store */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 50vw;
+            height: 50vw;
+            background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+            border-radius: 50% 40% 60% 40% / 40% 50% 50% 60%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 55vw;
+            height: 55vw;
+            background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
+            border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -40px) rotate(10deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* Mobile Phone Frame Style */
+        .signup-container {
+            width: 100%;
+            max-width: 420px; /* Slightly wider to accommodate larger text */
+            background: var(--card-bg);
+            border: 8px solid #ffffff; /* Phone-like bezel */
+            border-radius: 40px; 
+            padding: 2rem 1.8rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            font-size: 2.2rem; /* Larger font size */
+            font-weight: 800; /* Thicker */
+            color: #000;
+            letter-spacing: -0.5px;
+        }
+
+         .form-group {
+            margin-bottom: 0.9rem;
+               }
+        .form-group .field-label {
+            display: block;
+            font-size: 0.95rem; /* Larger */
+            font-weight: 700; /* Thicker */
+            margin-bottom: 0.5rem;
+            margin-left: 0.6rem;
+            color: #000; /* Thicker solid color */
+        }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-icon svg {
+            position: absolute;
+            left: 1.2rem;
+            width: 22px; /* Marginally bigger icon */
+            height: 22px;
+            color: var(--icon-color);
+            transition: color 0.3s ease;
+            z-index: 2;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--input-bg);
+            border: 2px solid var(--border-color); /* Thicker border */
+            border-radius: 9999px; 
+            padding: 1rem 1.5rem 1rem 3.5rem; /* Larger padding */
+            color: var(--text-main);
+            font-size: 1.05rem; /* Larger font size */
+            font-weight: 600; /* Thicker font weight */
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0, 15, 230, 0.1);
+        }
+
+        .input-with-icon:focus-within svg {
+            color: var(--primary);
+        }
+
+        .terms-group {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+            margin-bottom: 1.8rem;
+            font-size: 0.9rem; /* Larger */
+            font-weight: 600; /* Thicker */
+            color: var(--text-main);
+        }
+
+        .terms-group input[type="checkbox"] {
+            appearance: none;
+            width: 20px; /* Larger box */
+            height: 20px;
+            border: 2px solid var(--border-color); /* Thicker */
+            border-radius: 5px;
+            background: var(--input-bg);
+            margin-right: 0.6rem;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .terms-group input[type="checkbox"]:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .terms-group input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .terms-group label {
+            color: var(--text-main);
+        }
+
+        .terms-group a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 800; /* Extra Thick */
+        }
+
+        .terms-group a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            padding: 1.15rem; /* Larger */
+            font-size: 1.15rem; /* Larger */
+            font-weight: 800; /* Thicker */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 15, 230, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            background: var(--primary-hover);
+            box-shadow: 0 8px 25px rgba(0, 15, 230, 0.4);
+        }
+
+        .social-signup {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .social-signup p {
+            font-size: 0.95rem; /* Larger */
+            font-weight: 700; /* Thicker */
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem; /* Increase gap */
+        }
+
+        .social-btn {
+            width: 50px; /* Larger */
+            height: 50px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid var(--border-color); /* Thicker border */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-weight: 800; /* Thicker */
+            font-size: 1.3rem; /* Larger */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.95rem; /* Larger */
+            font-weight: 700; /* Thicker */
+            color: var(--text-muted);
+        }
+
+        .footer-text a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 800; /* Thicker */
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <div class="header">
+            <h1>Sign Up</h1>
+        </div>
+<form action="/parent/signup" method="post">
+            <div class="form-group">
+                <span class="field-label">Name</span>
+                <div class="input-with-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <input type="text"  name="name" class="form-control" placeholder="Enter Your Full Name" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="field-label">Phone</span>
+                <div class="input-with-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <input type="tel" name="phoneNumber" class="form-control" placeholder="Enter Phone Number" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="field-label">Email</span>
+                <div class="input-with-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                </div>
+            </div>
+
+
+
+
+<div class="form-group">
+    <span class="field-label">Timezone</span>
+
+    <div class="input-with-icon">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
+
+            <path d="M12 2C8 2 4 6 4 12s4 10 8 10 8-4 8-10S16 2 12 2z"></path>
+
+            <path d="M2 12h20"></path>
+
+            <path d="M12 2a15.3 15.3 0 0 1 4 10
+                     15.3 15.3 0 0 1-4 10
+                     15.3 15.3 0 0 1-4-10
+                     15.3 15.3 0 0 1 4-10z">
+            </path>
+
+        </svg>
+
+        <select name="timezone"
+                class="form-control"
+                required>
+
+            <option value="">
+                Select Your Timezone
+            </option>
+
+            <option value="Asia/Kolkata">
+                India (Asia/Kolkata)
+            </option>
+
+            <option value="America/New_York">
+                USA - New York
+            </option>
+
+            <option value="America/Chicago">
+                USA - Chicago
+            </option>
+
+            <option value="America/Los_Angeles">
+                USA - California
+            </option>
+
+            <option value="Europe/London">
+                United Kingdom
+            </option>
+
+            <option value="Europe/Paris">
+                France
+            </option>
+
+            <option value="Europe/Berlin">
+                Germany
+            </option>
+
+            <option value="Asia/Dubai">
+                UAE
+            </option>
+
+            <option value="Asia/Singapore">
+                Singapore
+            </option>
+
+            <option value="Asia/Tokyo">
+                Japan
+            </option>
+
+            <option value="Australia/Sydney">
+                Australia
+            </option>
+
+        </select>
+    </div>
+</div>
+
+            <div class="form-group">
+                <span class="field-label">Password</span>
+                <div class="input-with-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="field-label">Confirm Password</span>
+                <div class="input-with-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password" required>
+                </div>
+            </div>
+
+            <div class="terms-group">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to <a href="#">Terms</a> and <a href="#">Privacy Policy.</a></label>
+            </div>
+
+           
+            
+            
+    <button type="submit" class="btn-submit">Sign Up</button>
+        
+
+            
+
+            <div class="footer-text">
+    Already have an account?
+    <a href="/parent/login">Login</a>
+</div>
+
+        </form>
+    </div>
+
+</body>
+</html>

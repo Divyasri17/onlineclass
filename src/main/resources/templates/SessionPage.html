@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Offering</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    min-height:100vh;
+    padding:40px;
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+}
+
+.header{
+    margin-bottom:40px;
+}
+
+.header h1{
+    font-size:40px;
+    color:#111827;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#6b7280;
+    font-size:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    text-decoration:none;
+    color:inherit;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 35px rgba(37,99,235,.18);
+}
+
+.card h2{
+    color:#2563eb;
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+.card p{
+    color:#64748b;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    text-decoration:none;
+    background:linear-gradient(90deg,#2563eb,#4f46e5);
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.no-data{
+    text-align:center;
+    margin-top:120px;
+}
+
+.no-data h2{
+    color:#111827;
+    margin-bottom:10px;
+}
+
+.no-data p{
+    color:#6b7280;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Select Offering</h1>
+        <p>Select an offering to add sessions.</p>
+    </div>
+
+    <div class="no-data"
+         th:if="${#lists.isEmpty(offerings)}">
+        <h2>No Offerings Found</h2>
+        <p>Create an offering first.</p>
+    </div>
+
+    <div class="grid"
+         th:if="${!#lists.isEmpty(offerings)}">
+
+        <a class="card"
+           th:each="offering : ${offerings}"
+           th:href="@{/session/addpage(offeringId=${offering.id})}">
+
+            <h2 th:text="${offering.batchName}">Batch Name</h2>
+
+            <p>
+                <strong>Price:</strong>
+                ₹<span th:text="${offering.price}"></span>
+            </p>
+
+            <p>
+                <strong>Mode:</strong>
+                <span th:text="${offering.mode}"></span>
+            </p>
+
+            <p>
+                <strong>Level:</strong>
+                <span th:text="${offering.level}"></span>
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <span th:text="${offering.status}"></span>
+            </p>
+
+            <span class="btn">Add Session →</span>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

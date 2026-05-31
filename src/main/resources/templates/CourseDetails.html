@@ -1,0 +1,302 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Course Details</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background: #f4f7fc;
+        padding: 30px;
+      }
+
+      .container {
+        max-width: 1300px;
+        margin: auto;
+      }
+
+      .course-card {
+        background: white;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+      }
+
+      .banner {
+        display: flex;
+        gap: 30px;
+        padding: 30px;
+      }
+
+      .banner img {
+        width: 350px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+
+      .info {
+        flex: 1;
+      }
+
+      .info h1 {
+        font-size: 38px;
+        color: #000fe6;
+        margin-bottom: 15px;
+      }
+
+      .info p {
+        color: #64748b;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .tags {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .tag {
+        background: #eef2ff;
+        color: #000fe6;
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-weight: 600;
+      }
+
+      .price {
+        font-size: 32px;
+        font-weight: 800;
+        color: #111827;
+      }
+
+      .timezone-box {
+        display: flex;
+        justify-content: space-between;
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .timezone-box h3 {
+        color: #000fe6;
+        margin-bottom: 10px;
+      }
+
+      .offering-card {
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .offering-card h2 {
+        color: #000fe6;
+        margin-bottom: 15px;
+      }
+
+      .timeline-title {
+        font-size: 30px;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+
+      .session-card {
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .week-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #000fe6;
+        margin-bottom: 20px;
+      }
+
+      .time-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+
+      .time-column {
+        background: #f7f9ff;
+        padding: 20px;
+        border-radius: 15px;
+      }
+
+      .time-column h4 {
+        margin-bottom: 10px;
+        color: #111827;
+      }
+
+      .time-column .date {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .time-column .time {
+        font-size: 17px;
+        color: #64748b;
+      }
+
+      .enroll-btn {
+        display: block;
+        width: 250px;
+        margin: 40px auto;
+        text-align: center;
+        text-decoration: none;
+        background: #000fe6;
+        color: white;
+        padding: 18px;
+        border-radius: 15px;
+        font-size: 18px;
+        font-weight: 700;
+        transition: 0.3s;
+      }
+
+      .enroll-btn:hover {
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+  
+  
+  
+  <div th:if="${param.error}">
+<script>
+alert(
+"Cannot enroll. You already have another class during this time."
+);
+</script>
+</div>
+
+    <div class="container">
+      <div class="course-card">
+        <div class="banner">
+          <img th:src="${course.imageUrl}" />
+
+          <div class="info">
+            <h1 th:text="${course.title}"></h1>
+
+            <p th:text="${course.description}"></p>
+
+            <div class="tags">
+              <div class="tag" th:text="${offering.mode}"></div>
+
+              <div class="tag" th:text="${offering.level}"></div>
+            </div>
+
+            <div class="price">₹<span th:text="${offering.price}"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timezone-box">
+        <div>
+          <h3>Teacher Timezone</h3>
+          <p th:text="${teacherTimezone}"></p>
+        </div>
+
+        <div>
+          <h3>Parent Timezone</h3>
+          <p th:text="${parentTimezone}"></p>
+        </div>
+      </div>
+
+      <div class="offering-card">
+        <h2>Offering</h2>
+
+        <h3 th:text="${offering.batchName}"></h3>
+      </div>
+
+      <h2 class="timeline-title">Course Schedule</h2>
+
+      <div th:each="s,stat : ${sessions}"
+     class="session-card">
+
+    <div class="week-title">
+
+        <span th:text="${offering.durationType == 'WEEK'
+        ? 'Week ' + stat.count
+        : 'Day ' + stat.count}">
+        </span>
+
+    </div>
+
+    <div class="time-grid">
+
+        <div class="time-column">
+
+            <h4>Teacher Time</h4>
+
+            <div class="date"
+                 th:text="${s.teacherDate}">
+            </div>
+
+            <div class="time"
+                 th:text="${s.teacherTime}">
+            </div>
+
+        </div>
+
+        <div class="time-column">
+
+            <h4>Parent Time</h4>
+
+            <div class="date"
+                 th:text="${s.parentDate}">
+            </div>
+
+            <div class="time"
+                 th:text="${s.parentTime}">
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div> 
+   <form action="/booking/book"
+      method="post">
+
+    <input type="hidden"
+           name="courseId"
+           th:value="${course.id}">
+
+    <input type="hidden"
+           name="offeringId"
+           th:value="${offering.id}">
+
+    <button type="submit"
+            class="enroll-btn">
+        Enroll Entire Course
+    </button>
+
+</form>
+ </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Select Role</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #eef4ff,
+    #f8fbff);
+}
+
+.container{
+
+    width:100%;
+    max-width:900px;
+
+    background:white;
+
+    padding:60px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.08);
+}
+
+h1{
+
+    font-size:48px;
+
+    color:#111827;
+
+    margin-bottom:15px;
+}
+
+p{
+
+    color:#6b7280;
+
+    font-size:18px;
+
+    margin-bottom:50px;
+}
+
+.roles{
+
+    display:flex;
+
+    gap:30px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+}
+
+.role-card{
+
+    width:280px;
+
+    text-decoration:none;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    border:2px solid #e5e7eb;
+
+    transition:.3s;
+}
+
+.role-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 15px 35px
+    rgba(37,99,235,.15);
+}
+
+.icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+}
+
+.role-card h2{
+
+    color:#111827;
+
+    margin-bottom:10px;
+}
+
+.role-card span{
+
+    color:#6b7280;
+}
+
+.teacher{
+
+    color:#2563eb;
+}
+
+.parent{
+
+    color:#10b981;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Welcome</h1>
+
+    <p>
+        Select how you want to continue
+    </p>
+
+    <div class="roles">
+
+       <a href="/login"
+   class="role-card">
+
+            <div class="icon teacher">
+                👨‍🏫
+            </div>
+
+            <h2>Teacher</h2>
+
+            <span>
+                Manage courses, offerings and sessions
+            </span>
+
+        </a>
+
+        <a href="/parent/login"
+   class="role-card">
+
+            <div class="icon parent">
+                👨‍👩‍👧
+            </div>
+
+            <h2>Parent</h2>
+
+            <span>
+                View and enroll for available courses
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

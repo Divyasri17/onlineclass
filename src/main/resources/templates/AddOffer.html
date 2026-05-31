@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Create Offering</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+    135deg,
+    #eef4ff,
+    #f8faff);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+}
+
+.offering-card{
+
+    width:100%;
+    max-width:750px;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:50px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.08);
+}
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+}
+
+.header h1{
+
+    font-size:42px;
+    font-weight:800;
+
+    background:
+    linear-gradient(
+    90deg,
+    #2563eb,
+    #4f46e5);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:12px;
+}
+
+.header p{
+
+    color:#64748b;
+    font-size:16px;
+}
+
+.batch-box{
+
+    margin-bottom:25px;
+}
+
+.batch-box label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#2563eb;
+
+    font-size:16px;
+    font-weight:700;
+}
+
+.batch-box input,
+.batch-box select{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#f1f5f9;
+
+    font-size:16px;
+
+    transition:.3s;
+}
+
+.batch-box input:focus,
+.batch-box select:focus{
+
+    outline:none;
+
+    background:white;
+
+    box-shadow:
+    0 0 0 4px
+    rgba(37,99,235,.15);
+}
+
+.info-box{
+
+    margin-top:30px;
+
+    background:#eef4ff;
+
+    border-left:
+    5px solid #2563eb;
+
+    padding:18px;
+
+    border-radius:12px;
+}
+
+.info-box h3{
+
+    color:#2563eb;
+
+    margin-bottom:8px;
+}
+
+.info-box p{
+
+    color:#475569;
+
+    line-height:1.6;
+}
+
+.submit-btn{
+
+    width:100%;
+
+    margin-top:35px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #2563eb,
+    #4f46e5);
+
+    color:white;
+
+    font-size:18px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.submit-btn:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 15px 30px
+    rgba(37,99,235,.25);
+}
+
+@media(max-width:768px){
+
+.offering-card{
+
+padding:30px;
+}
+
+.header h1{
+
+font-size:32px;
+}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="offering-card">
+
+    <div class="header">
+
+        <h1>Create Offering</h1>
+
+        <p>
+            Create a new batch for your course and continue to add sessions.
+        </p>
+
+    </div>
+
+    <form action="/offering/save"
+          method="post">
+
+        <!-- Course Id -->
+        <input type="hidden"
+               name="courseId"
+               th:value="${courseId}">
+
+        <div class="batch-box">
+
+            <label>Batch Name</label>
+
+            <input type="text"
+                   name="batchName"
+                   placeholder="Java Weekend Batch"
+                   required>
+
+        </div>
+
+        <div class="batch-box">
+
+            <label>Price (₹)</label>
+
+            <input type="number"
+                   name="price"
+                   placeholder="4999"
+                   required>
+
+        </div>
+
+        <div class="batch-box">
+
+            <label>Mode</label>
+
+            <select name="mode">
+
+                <option value="Online">
+                    Online
+                </option>
+
+                <option value="Offline">
+                    Offline
+                </option>
+
+                <option value="Hybrid">
+                    Hybrid
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="batch-box">
+
+            <label>Level</label>
+
+            <select name="level">
+
+                <option value="Beginner">
+                    Beginner
+                </option>
+
+                <option value="Intermediate">
+                    Intermediate
+                </option>
+
+                <option value="Advanced">
+                    Advanced
+                </option>
+
+            </select>
+
+        </div>
+        
+        
+        <div class="batch-box">
+
+    <label>Duration Type</label>
+
+    <select name="durationType"
+            id="durationType">
+
+        <option value="WEEK">
+            Weeks
+        </option>
+
+        <option value="DAY">
+            Days
+        </option>
+
+    </select>
+
+</div>
+
+<div class="batch-box">
+
+    <label id="durationLabel">
+        Number of Weeks
+    </label>
+
+    <input type="number"
+           name="durationCount"
+           id="durationCount"
+           min="1"
+           placeholder="8"
+           required>
+
+</div>
+
+
+<div class="batch-box">
+
+    <label>First Session Start Time</label>
+
+    <input type="datetime-local"
+           name="firstStartTime"
+           required>
+
+</div>
+
+<div class="batch-box">
+
+    <label>First Session End Time</label>
+
+    <input type="datetime-local"
+           name="firstEndTime"
+           required>
+
+</div>
+
+        <div class="info-box">
+
+            <h3>What happens next?</h3>
+
+            <p>
+                After creating this offering,
+                you will be redirected to the
+                Session page where you can
+                add class timings, meeting links,
+                start date and end date.
+            </p>
+
+        </div>
+
+        <button type="submit"
+                class="submit-btn">
+
+            Create Offering →
+            Add Sessions
+     
+        </button>
+
+    </form>
+
+</div>
+
+
+<script>
+
+const durationType =
+document.getElementById(
+"durationType");
+
+const durationLabel =
+document.getElementById(
+"durationLabel");
+
+durationType.addEventListener(
+"change",
+function()
+{
+    if(this.value === "WEEK")
+    {
+        durationLabel.innerText =
+        "Number of Weeks";
+    }
+    else
+    {
+        durationLabel.innerText =
+        "Number of Days";
+    }
+});
+
+</script>
+
+
+</body>
+</html>
