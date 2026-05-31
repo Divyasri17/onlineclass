@@ -1,0 +1,83 @@
+
+Teacher APIs
+
+POST /teacher/signup
+POST /teacher/login
+GET  /teacher/all
+GET  /teacher/{id}
+PUT  /teacher/update/{id}
+DELETE /teacher/delete/{id}
+
+
+Parent APIs
+
+POST /parent/signup
+POST /parent/login
+GET  /parent/all
+GET  /parent/{id}
+PUT  /parent/update/{id}
+DELETE /parent/delete/{id}
+
+Course APIs
+
+POST /course/add
+GET  /course/all
+GET  /course/{id}
+PUT  /course/update/{id}
+DELETE /course/delete/{id}
+
+Offering APIs
+
+POST /offering/add
+GET  /offering/all
+GET  /offering/{id}
+PUT  /offering/update/{id}
+DELETE /offering/delete/{id}
+
+Session APIs
+
+POST /session/add
+GET  /session/all
+GET  /session/{id}
+PUT  /session/update/{id}
+DELETE /session/delete/{id}
+
+Booking APIs
+
+POST /booking/add
+GET  /booking/all
+GET  /booking/{id}
+PUT  /booking/update/{id}
+DELETE /booking/delete/{id}
+
+
+Collection Structure
+
+
+Online Class API
+|
+|-- Teacher
+|   |-- Signup
+|   |-- Login
+|   |-- Get All
+|
+|-- Parent
+|   |-- Signup
+|   |-- Login
+|   |-- Get All
+|
+|-- Course
+|   |-- Add Course
+|   |-- Get All Courses
+|
+|-- Offering
+|   |-- Add Offering
+|   |-- Get All Offerings
+|
+|-- Session
+|   |-- Add Session
+|   |-- Get All Sessions
+|
+|-- Booking
+|   |-- Create Booking
+|   |-- Get All Bookings
